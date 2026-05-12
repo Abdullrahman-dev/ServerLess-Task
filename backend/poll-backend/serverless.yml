@@ -1,0 +1,64 @@
+service: poll-backend
+
+provider:
+  name: aws
+  runtime: nodejs20.x 
+  region: us-east-1
+  httpApi:
+    cors: true
+  environment:
+    POLLS_TABLE: ${self:service}-${sls:stage}-polls
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:PutItem
+            - dynamodb:GetItem
+            - dynamodb:UpdateItem
+          Resource:
+            - Fn::GetAtt: [ PollsTable, Arn ]
+
+functions:
+  createPoll:
+    handler: index.createPoll
+    events:
+      - httpApi:
+          path: /polls
+          method: post
+
+  getPollResults:
+    handler: index.getPollResults
+    events:
+      - httpApi:
+          path: /polls/{pollId}
+          method: get
+
+  vote:
+    handler: index.castVote
+    events:
+      - httpApi:
+          path: /polls/{pollId}/vote
+          method: post
+
+  sendResults:
+    handler: index.sendResults
+    events:
+      - httpApi:
+          path: /polls/{pollId}/send
+          method: post
+
+resources:
+  Resources:
+    PollsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.POLLS_TABLE}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: pollId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: pollId
+            KeyType: HASH
+

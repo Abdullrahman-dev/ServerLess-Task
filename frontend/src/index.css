@@ -1,0 +1,118 @@
+/* src/index.css */
+:root {
+  --bg-color: #121212;
+  --container-bg: #1e1e1e;
+  --text-primary: #ffffff;
+  --text-secondary: #b3b3b3;
+  --accent-color: #6366f1; /* لون أزرق/بنفسجي عصري */
+  --accent-hover: #4f46e5;
+  --success-color: #10b981;
+  --error-color: #ef4444;
+  --border-color: #333333;
+  --input-bg: #2d2d2d;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding-top: 50px;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.card {
+  background-color: var(--container-bg);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--border-color);
+}
+
+h2, h3 {
+  margin-top: 0;
+  text-align: center;
+  color: var(--text-primary);
+}
+
+input[type="text"], input[type="email"] {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  box-sizing: border-box;
+  font-size: 16px;
+  margin-bottom: 15px;
+  transition: border-color 0.3s;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: var(--accent-color);
+  color: #ffffff;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--accent-hover);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--text-secondary);
+  border: 1px dashed var(--border-color);
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+.btn-success {
+  background-color: var(--success-color);
+  color: #ffffff;
+  width: 100%;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.qr-container {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  display: inline-block;
+  margin: 20px 0;
+}
