@@ -86,12 +86,10 @@ module.exports.sendResults = async (event) => {
     Item.options.forEach(opt => { resultsText += `- ${opt.text}: ${opt.votes} صوت\n`; });
     resultsText += `\nإجمالي الأصوات: ${Item.totalVotes}\n\nشكراً لاستخدامك منصتنا!`;
 
-    // تم إضافة الإيميل والباسورد هنا
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "dhmey0011@gmail.com",
-        pass: "wxtcxureduxmsuvm",
+
       },
     });
 
